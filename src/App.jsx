@@ -7,6 +7,11 @@ import 'prismjs/components/prism-markup'
 import 'prismjs/themes/prism-tomorrow.css' 
 import { CURRICULUM } from './curriculum'
 import './App.css'
+import { 
+  Folder, FileCode, Search, GitBranch, Bug, Blocks, Settings, 
+  ChevronDown, CheckCircle, Globe, ArrowLeft, ArrowRight, RotateCw, 
+  GitMerge, XCircle, AlertTriangle, Play, Volume2, VolumeX
+} from 'lucide-react'
 
 let globalAudioCtx = null;
 
@@ -190,7 +195,7 @@ function App() {
       setCode(CURRICULUM[nextChapIdx].modules[0].initialCode)
       setIsSuccess(false)
     } else {
-      alert(`🏆 SELAMAT! Anda telah menyelesaikan kelas dengan total ${xp + 500} XP! Gelar Akhir Anda: ${getRank(xp + 500)}! 🏆`)
+      alert(`SELAMAT! Anda telah menyelesaikan kelas dengan total ${xp + 500} XP! Gelar Akhir Anda: ${getRank(xp + 500)}!`)
     }
   }
 
@@ -222,7 +227,7 @@ function App() {
                 Aktifkan Suara Mentor (Auto-Play)
               </label>
             </div>
-            <button type="submit">Buka Workspace 🚀</button>
+            <button type="submit"><Play size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginRight: 8}}/> Buka Workspace</button>
           </form>
         </div>
       </div>
@@ -234,7 +239,7 @@ function App() {
       {/* Top Menu Bar */}
       <div className="vscode-menubar">
         <div className="menu-items">
-          <span className="logo-icon">🗂️</span>
+          <span className="logo-icon"><Folder size={14} /></span>
           <span>File</span>
           <span>Edit</span>
           <span>Selection</span>
@@ -257,13 +262,13 @@ function App() {
       <div className="vscode-body">
         {/* Activity Bar */}
         <div className="activity-bar">
-          <div className="activity-icon active">📄</div>
-          <div className="activity-icon">🔍</div>
-          <div className="activity-icon">ᛘ</div>
-          <div className="activity-icon">🐛</div>
-          <div className="activity-icon">🧩</div>
+          <div className="activity-icon active"><FileCode size={24} /></div>
+          <div className="activity-icon"><Search size={24} /></div>
+          <div className="activity-icon"><GitBranch size={24} /></div>
+          <div className="activity-icon"><Bug size={24} /></div>
+          <div className="activity-icon"><Blocks size={24} /></div>
           <div className="activity-bottom">
-            <div className="activity-icon">⚙️</div>
+            <div className="activity-icon"><Settings size={24} /></div>
           </div>
         </div>
 
@@ -271,7 +276,7 @@ function App() {
         <div className="sidebar">
           <div className="sidebar-header">EXPLORER</div>
           <div className="sidebar-section">
-            <div className="section-title">🔽 TECHNOVA_PROJECT</div>
+            <div className="section-title"><ChevronDown size={12} style={{marginRight: 4, display: 'inline-block', verticalAlign: 'middle'}}/> TECHNOVA_PROJECT</div>
             <div className="file-tree">
               <div className="tree-item active">
                 <span className="file-icon html-icon">5</span>
@@ -288,7 +293,7 @@ function App() {
             </div>
           </div>
           <div className="sidebar-section progress-section">
-            <div className="section-title">🔽 KARIER DEVELOPER</div>
+            <div className="section-title"><ChevronDown size={12} style={{marginRight: 4, display: 'inline-block', verticalAlign: 'middle'}}/> KARIER DEVELOPER</div>
             <div className="stats-box">
               <p>User: <strong>{playerName}</strong></p>
               <p>Role: <span className="rank-badge">{getRank(xp)}</span></p>
@@ -299,7 +304,7 @@ function App() {
               setIsVoiceEnabled(!isVoiceEnabled);
               if (isVoiceEnabled) window.speechSynthesis.cancel();
             }}>
-              {isVoiceEnabled ? '🔊 Suara: ON' : '🔇 Suara: OFF'}
+              {isVoiceEnabled ? <><Volume2 size={12} style={{display: 'inline-block', verticalAlign: 'middle', marginRight: 4}}/> Suara: ON</> : <><VolumeX size={12} style={{display: 'inline-block', verticalAlign: 'middle', marginRight: 4}}/> Suara: OFF</>}
             </button>
           </div>
         </div>
@@ -359,9 +364,9 @@ function App() {
                 
                 {isSuccess && (
                   <div className="terminal-success animate-fade-in">
-                    <span className="success-icon">✔</span> {successText}
+                    <span className="success-icon"><CheckCircle size={14} style={{display: 'inline-block', verticalAlign: 'middle'}}/></span> {successText}
                     <button className="vscode-btn primary-btn mt-2" onClick={nextModule}>
-                      {isExam ? "Jalankan Skrip Evaluasi Selanjutnya ➔" : "Lanjut ke Baris Berikutnya ➔"}
+                      {isExam ? "Jalankan Skrip Evaluasi Selanjutnya" : "Lanjut ke Baris Berikutnya"} <ArrowRight size={14} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: 4}}/>
                     </button>
                   </div>
                 )}
@@ -375,14 +380,14 @@ function App() {
         <div className="preview-pane">
           <div className="editor-tabs">
             <div className="tab active">
-              🌍 Browser Preview
+              <Globe size={14} style={{marginRight: 6}}/> Browser Preview
             </div>
           </div>
           <div className="preview-content">
             <div className="browser-address-bar">
-              <span className="nav-btn">←</span>
-              <span className="nav-btn">→</span>
-              <span className="nav-btn">↻</span>
+              <span className="nav-btn"><ArrowLeft size={16} /></span>
+              <span className="nav-btn"><ArrowRight size={16} /></span>
+              <span className="nav-btn"><RotateCw size={16} /></span>
               <div className="url-bar">localhost:3000</div>
             </div>
             <div 
@@ -397,8 +402,8 @@ function App() {
       {/* Bottom Status Bar */}
       <div className="vscode-statusbar">
         <div className="status-left">
-          <span className="status-item">🔀 master*</span>
-          <span className="status-item">❌ 0 ⚠️ 0</span>
+          <span className="status-item"><GitMerge size={12} style={{display: 'inline-block', verticalAlign: 'middle', marginRight: 4}}/> master*</span>
+          <span className="status-item"><XCircle size={12} style={{display: 'inline-block', verticalAlign: 'middle', marginRight: 2}}/> 0 <AlertTriangle size={12} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: 6, marginRight: 2}}/> 0</span>
           <span className="status-item">Port: 3000</span>
         </div>
         <div className="status-right">
@@ -406,7 +411,7 @@ function App() {
           <span className="status-item">Spaces: 2</span>
           <span className="status-item">UTF-8</span>
           <span className="status-item">HTML</span>
-          <span className="status-item">Prettier: ✔</span>
+          <span className="status-item">Prettier: <CheckCircle size={12} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: 2}}/></span>
         </div>
       </div>
     </div>

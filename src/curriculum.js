@@ -6,7 +6,7 @@ export const CURRICULUM = [
       {
         id: "1.1",
         type: "materi",
-        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "👨‍🏫" },
+        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "PB" },
         title: "Apa itu HTML?",
         description: "Halo {{playerName}}! Selamat bergabung. Hari ini saya akan mengajari kamu pondasi dari semua website di dunia: HTML. HTML atau HyperText Markup Language adalah kerangka dari sebuah halaman web. Bayangkan HTML seperti tulang punggung manusia. Tanpa tulang, kita tidak bisa berdiri tegak. \n\nDi HTML, kita menggunakan sesuatu yang disebut 'Tag' untuk memberi tahu browser apa yang harus ditampilkan. Tag biasanya berpasangan: ada tag pembuka dan tag penutup. \n\nTugas pertamamu: Buat sebuah Judul Utama menggunakan tag <h1>. Contoh: <h1>Ini Judul</h1>. Tuliskan kode tersebut di editor atas nama klien pertama kita!",
         initialCode: "<!-- Ketik tag <h1> di bawah ini -->\n",
@@ -16,7 +16,7 @@ export const CURRICULUM = [
       {
         id: "1.2",
         type: "materi",
-        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "👨‍🏫" },
+        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "PB" },
         title: "Menulis Paragraf",
         description: "Bagus sekali. Sekarang, sebuah judul tidak akan lengkap tanpa isi teksnya. Di dalam HTML, kita membungkus teks biasa menggunakan tag Paragraf, yaitu <p>.\n\nSetiap teks panjang, artikel, atau deskripsi produk di website, semuanya dibungkus dalam tag <p>. Ini memberitahu browser untuk memberikan jarak (spasi) yang rapi antar blok teks.\n\nSekarang, tambahkan sebuah paragraf menggunakan tag <p> yang berisi penjelasan singkat tentang klien kita. Isi teksnya bebas!",
         initialCode: "<!-- Ketik tag <p> di bawah ini -->\n",
@@ -26,7 +26,7 @@ export const CURRICULUM = [
       {
         id: "1.3",
         type: "materi",
-        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "👨‍🏫" },
+        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "PB" },
         title: "Format Teks: Bold & Italic",
         description: "Nah {{playerName}}, terkadang di dalam paragraf kita ingin memberikan penekanan pada kata tertentu. Sama seperti di Microsoft Word.\n\nDi HTML, kita menggunakan tag <strong> untuk menebalkan teks, yang juga memberi tahu mesin pencari Google bahwa kata tersebut penting. Sedangkan untuk teks miring, kita menggunakan tag <em> (Emphasis).\n\nTugasmu: Buatkan satu tag <strong> dan satu tag <em>. Kamu bisa membuatnya berdiri sendiri atau diletakkan di dalam tag <p>.",
         initialCode: "<!-- Ketik tag <strong> dan <em> di bawah ini -->\n",
@@ -36,7 +36,7 @@ export const CURRICULUM = [
       {
         id: "1-exam",
         type: "ujian",
-        sender: { name: "Sistem Evaluasi", role: "Ujian Otomatis", avatar: "🤖" },
+        sender: { name: "Sistem Evaluasi", role: "Ujian Otomatis", avatar: "SYS" },
         title: "Ujian Modul 1: Artikel Lengkap",
         description: "Ujian dimulai, {{playerName}}. Buktikan bahwa kamu telah memahami teori dari Pak Budi.\n\nKamu diminta oleh klien untuk menulis artikel pendek. Syaratnya harus memiliki ketiga elemen yang baru saja diajarkan dalam satu kesatuan:\n\n1. Harus ada sebuah judul <h1>.\n2. Harus ada sebuah paragraf <p>.\n3. Di DALAM paragraf tersebut, wajib ada satu kata yang ditebalkan dengan tag <strong>.\n\nKerjakan sekarang sebelum waktu habis!",
         initialCode: "<!-- Kerjakan ujian di sini -->\n",
@@ -57,7 +57,7 @@ export const CURRICULUM = [
       {
         id: "2.1",
         type: "materi",
-        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "👨‍🏫" },
+        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "PB" },
         title: "Teori Tag Anchor <a>",
         description: "Internet disebut 'Web' (Jaring) karena setiap halamannya saling terhubung. Alat yang menghubungkannya adalah Hyperlink. Di HTML, kita menggunakan tag Anchor, disingkat <a>.\n\nTag <a> unik karena dia membutuhkan 'Atribut'. Atribut memberikan informasi tambahan pada tag. Untuk tag <a>, atribut terpenting adalah 'href' (Hypertext Reference) yang berisi alamat tujuan.\n\nContoh penulisannya: <a href=\"https://google.com\">Klik di sini</a>.\n\nCoba buatkan sebuah hyperlink menuju https://wikipedia.org sekarang!",
         initialCode: "<!-- Buat tautan <a> di bawah ini -->\n",
@@ -67,7 +67,7 @@ export const CURRICULUM = [
       {
         id: "2-exam",
         type: "ujian",
-        sender: { name: "Sistem Evaluasi", role: "Ujian Otomatis", avatar: "🤖" },
+        sender: { name: "Sistem Evaluasi", role: "Ujian Otomatis", avatar: "SYS" },
         title: "Ujian Modul 2: Navigasi Menu",
         description: "{{playerName}}, buatkan simulasi menu navigasi sederhana. \n\nSistem membutuhkan 2 buah tautan <a>. \nSalah satu tautan tersebut teksnya harus bertuliskan 'Beranda'. \n\nTuliskan keduanya di editor!",
         initialCode: "<!-- Buat 2 tautan di sini -->\n",
@@ -87,7 +87,7 @@ export const CURRICULUM = [
       {
         id: "3.1",
         type: "materi",
-        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "👨‍🏫" },
+        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "PB" },
         title: "Teori Tag Image <img>",
         description: "Hari ini kita belajar memasukkan media visual. Tag untuk gambar adalah <img>.\n\nBerbeda dengan tag lainnya, <img> adalah 'self-closing tag', artinya dia TIDAK punya tag penutup. Kita tidak menulis </img>.\n\nUntuk menampilkan gambar, tag ini butuh atribut 'src' (Source) yang mengarah ke URL gambar, dan atribut 'alt' (Alternative text) jika gambar gagal dimuat. Contoh: <img src=\"url-gambar.jpg\" alt=\"Deskripsi\">.\n\nSekarang, coba buatkan satu gambar. Gunakan link gambar apa saja yang kamu mau, masukkan ke atribut src!",
         initialCode: "<!-- Buat gambar menggunakan tag <img> -->\n<img src=\"https://picsum.photos/300/200\" alt=\"Gambar Acak\">",
@@ -97,7 +97,7 @@ export const CURRICULUM = [
       {
         id: "3-exam",
         type: "ujian",
-        sender: { name: "Sistem Evaluasi", role: "Ujian Otomatis", avatar: "🤖" },
+        sender: { name: "Sistem Evaluasi", role: "Ujian Otomatis", avatar: "SYS" },
         title: "Ujian Modul 3: Gambar yang Bisa Diklik",
         description: "Ujian praktikal: Menggabungkan modul 2 dan modul 3!\n\nDi dunia nyata, logo website atau banner iklan biasanya bisa diklik. \nCaranya adalah dengan memasukkan tag <img> ke dalam tag <a> (sebagai 'anak' atau child element).\n\nTugas: Buatkan sebuah gambar yang jika diklik akan mengarah ke tempat lain. Bungkus <img> dengan <a>!",
         initialCode: "<!-- Kerjakan ujian di sini -->\n",
@@ -116,7 +116,7 @@ export const CURRICULUM = [
       {
         id: "4.1",
         type: "materi",
-        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "👨‍🏫" },
+        sender: { name: "Pak Budi", role: "Mentor Senior", avatar: "PB" },
         title: "Teori Unordered List <ul>",
         description: "Ada kalanya kita perlu menampilkan informasi secara berpoin (bullet points). Untuk itu, HTML menyediakan tag <ul> (Unordered List).\n\nNamun, tag <ul> tidak bisa berdiri sendiri. Di dalamnya, kita harus mendefinisikan item satu per satu menggunakan tag <li> (List Item). Ini disebut hubungan Parent-Child.\n\nContoh:\n<ul>\n  <li>Item 1</li>\n</ul>\n\nTugasmu: Buatkan sebuah <ul> yang di dalamnya terdapat minimal dua <li>.",
         initialCode: "<!-- Buat daftar fitur di bawah ini -->\n",
@@ -138,7 +138,7 @@ export const CURRICULUM = [
       {
         id: "final-exam",
         type: "ujian",
-        sender: { name: "CEO TechNova", role: "Penguji Utama", avatar: "🤵" },
+        sender: { name: "CEO TechNova", role: "Penguji Utama", avatar: "CEO" },
         title: "Sertifikasi HTML Developer",
         description: "Ini adalah ujian akhirmu, {{playerName}}. Buktikan pemahamanmu terhadap seluruh teori yang diajarkan Pak Budi minggu ini.\n\nBangunlah struktur kerangka halaman Profil Perusahaan yang utuh di dalam editor. Halaman tersebut harus memiliki:\n\n1. Sebuah Heading <h1>.\n2. Sebuah tag gambar <img>.\n3. Sebuah Paragraf penjelasan <p>.\n4. Sebuah Tautan hyperlink <a>.\n5. Sebuah daftar poin <ul> lengkap dengan <li> di dalamnya.\n\nSusun dengan rapi layaknya programmer profesional sesungguhnya!",
         initialCode: "<!-- Tulis kode mahakaryamu di sini -->\n",
