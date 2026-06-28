@@ -683,17 +683,24 @@ function MobilePanelSwitcher({
     <div className="mobile-panel-switcher" aria-label="Panel mobile">
       <button
         type="button"
+        aria-pressed={activePanel === 'sidebar'}
+        onClick={() => onChange('sidebar')}
+      >
+        Sidebar
+      </button>
+      <button
+        type="button"
         aria-pressed={activePanel === 'editor'}
         onClick={() => onChange('editor')}
       >
-        Tampilkan editor
+        Editor
       </button>
       <button
         type="button"
         aria-pressed={activePanel === 'preview'}
         onClick={() => onChange('preview')}
       >
-        Tampilkan preview
+        Preview
       </button>
     </div>
   )
