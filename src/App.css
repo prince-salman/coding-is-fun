@@ -1516,15 +1516,18 @@ body {
     overflow-x: hidden;
   }
   .vscode-body {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .activity-bar {
     flex-direction: row;
-    height: 50px;
+    height: 55px;
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     flex-shrink: 0;
+    border-right: none;
+    border-top: 1px solid var(--vscode-border);
+    background: var(--vscode-activity);
   }
   .activity-bottom {
     flex-direction: row;
@@ -1533,16 +1536,15 @@ body {
   }
   .sidebar-shell {
     width: 100% !important;
-    height: 40vh !important;
-    border-right: none;
-    border-bottom: 1px solid var(--vscode-border);
-    flex-shrink: 0;
-  }
-  .editor-shell {
-    width: 100% !important;
+    height: auto !important;
     flex: 1;
-    display: flex;
-    flex-direction: column;
+    border-right: none;
+    border-bottom: none;
+  }
+  .editor-group, .preview-shell {
+    width: 100% !important;
+    height: auto !important;
+    flex: 1;
   }
   .resize-handle-sidebar, .resize-handle-preview {
     display: none;

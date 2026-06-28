@@ -548,7 +548,7 @@ function App() {
         />
       )}
       <div
-        className="sidebar-shell"
+        className={`sidebar-shell mobile-panel ${mobilePanel === 'sidebar' ? 'mobile-active' : ''}`}
         style={{ width: activeActivity === 'game' ? Math.max(sidebarWidth, 520) : sidebarWidth }}
       >
         {activeActivity === 'explorer' ? (
