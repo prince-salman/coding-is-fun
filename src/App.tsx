@@ -710,6 +710,7 @@ function ActivityTrainingPanel({
   activeLanguage,
   onOpenModule,
   onEarnXp,
+  completedModuleIds,
 }: {
   activity: Exclude<ActivityView, 'explorer'>
   activeLanguage: string
