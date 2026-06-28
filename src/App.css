@@ -428,6 +428,8 @@ body {
 .tree-item:hover { background: rgba(255,255,255,0.05); }
 .tree-item:focus-visible { outline: 1px solid var(--vscode-accent); outline-offset: -1px; }
 .tree-item.active { background: rgba(255,255,255,0.1); color: white; }
+.tree-item.locked { opacity: 0.5; cursor: not-allowed; }
+.tree-item.locked:hover { background: transparent; }
 
 .html-icon { color: #e34f26; }
 .css-icon { color: #1572B6; }
@@ -1483,3 +1485,88 @@ body {
   .mobile-panel.mobile-active { display: flex; }
   .preview-pane { border-left: 0; }
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .certificate-modal, .certificate-modal * {
+    visibility: visible;
+  }
+  .certificate-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: white !important;
+    color: black !important;
+  }
+  .hide-on-print {
+    display: none !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  .vscode-layout {
+    flex-direction: column;
+  }
+  .activity-bar {
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+    overflow-x: auto;
+  }
+  .activity-items {
+    display: flex;
+    flex-direction: row;
+  }
+  .activity-bottom {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0;
+  }
+  .sidebar-shell {
+    width: 100% !important;
+    height: 50vh;
+    border-right: none;
+    border-bottom: 1px solid #333;
+  }
+  .editor-shell {
+    flex: 1;
+    height: 50vh;
+  }
+  .resize-handle-sidebar {
+    display: none;
+  }
+  .mobile-panel-switcher {
+    display: flex;
+  }
+  .certificate-modal {
+    width: 95% !important;
+    padding: 20px !important;
+  }
+  .certificate-modal h1 {
+    font-size: 1.5rem !important;
+  }
+  .certificate-modal h2 {
+    font-size: 2rem !important;
+  }
+  .certificate-modal p {
+    font-size: 1rem !important;
+  }
+  .vscode-statusbar {
+    font-size: 0.75rem;
+    padding: 0 5px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+

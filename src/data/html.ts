@@ -187,28 +187,66 @@ export const HTML_TRACK: Chapter[] = [
   },
   {
     chapterId: 5,
+    chapterTitle: 'Hari Kelima: Mengumpulkan & Menampilkan Data',
+    modules: [
+      {
+        id: '5.1',
+        type: 'materi',
+        language: 'markup',
+        sender: MENTOR,
+        title: 'Membuat Formulir (Forms)',
+        description:
+          'Website interaktif pasti butuh formulir (Login, Daftar, dll). Kita menggunakan tag <form> untuk membungkus elemen input.\n\nTag <input> (self-closing) memiliki banyak tipe: "text", "password", "email", dll. Kita juga butuh <button type="submit"> untuk mengirim data.\n\nTugasmu: Buatkan satu <input> bertipe "text" dan satu <button> bertipe "submit" di dalam form!',
+        initialCode: '<!-- Buat form input di sini -->\n<form>\n  \n</form>\n',
+        validator: (code) => {
+          const cleanCode = code.replace(/\n/g, '')
+          return /<input\s+[^>]*type\s*=\s*['"]text['"][^>]*>/i.test(cleanCode) && /<button[^>]*type\s*=\s*['"]submit['"][^>]*>.+<\/button>/i.test(cleanCode)
+        },
+        successMessage: 'Hebat! Kamu baru saja menguasai cara mengambil data dari user.',
+      },
+      {
+        id: '5.2',
+        type: 'materi',
+        language: 'markup',
+        sender: MENTOR,
+        title: 'Menyusun Data dengan Tabel',
+        description:
+          'Terkadang kita perlu menampilkan data seperti Excel. Kita menggunakan tag <table>, baris <tr> (Table Row), dan kolom data <td> (Table Data).\n\nUntuk teks judul/header tabel, kita pakai <th>.\n\nTugasmu: Buatkan sebuah tabel yang memiliki SATU baris <tr>, dan di dalamnya ada DUA kolom <td>.',
+        initialCode: '<!-- Buat tabel di sini -->\n',
+        validator: (code) => {
+          const cleanCode = code.replace(/\n/g, '')
+          const trMatch = cleanCode.match(/<tr>(.*?)<\/tr>/i)
+          if (!trMatch) return false
+          const tdMatches = trMatch[1].match(/<td>.+?<\/td>/gi)
+          return Boolean(tdMatches && tdMatches.length >= 2)
+        },
+        successMessage: 'Keren! Tabel sangat penting untuk dashboard dan laporan data.',
+      },
+    ],
+  },
+  {
+    chapterId: 6,
     chapterTitle: 'Ujian Akhir: Struktur Fundamental',
     modules: [
       {
-        id: 'final-exam',
+        id: 'html-final-exam',
         type: 'ujian',
         language: 'markup',
         sender: CEO,
         title: 'Sertifikasi HTML Developer',
         description:
-          'Ini adalah ujian akhirmu, {{playerName}}. Buktikan pemahamanmu terhadap seluruh teori yang diajarkan Pak Budi minggu ini.\n\nBangunlah struktur kerangka halaman Profil Perusahaan yang utuh di dalam editor. Halaman tersebut harus memiliki:\n\n1. Sebuah Heading <h1>.\n2. Sebuah tag gambar <img>.\n3. Sebuah Paragraf penjelasan <p>.\n4. Sebuah Tautan hyperlink <a>.\n5. Sebuah daftar poin <ul> lengkap dengan <li> di dalamnya.\n\nSusun dengan rapi layaknya programmer profesional sesungguhnya!',
+          'Ini adalah ujian akhirmu, {{playerName}}. Buktikan pemahamanmu terhadap seluruh teori yang diajarkan.\n\nBangunlah sebuah struktur Formulir Registrasi! Syaratnya:\n1. Harus ada Heading <h1>.\n2. Harus ada <form>.\n3. Di dalam form, harus ada tag input type="text" dan <button> submit.\n\nKerjakan layaknya profesional!',
         initialCode: '<!-- Tulis kode mahakaryamu di sini -->\n',
         validator: (code) => {
           const cleanCode = code.replace(/\n/g, '')
           const hasH1 = /<h1>.+<\/h1>/i.test(cleanCode)
-          const hasImg = /<img\s+[^>]*src\s*=\s*['"][^'"]*['"][^>]*>/i.test(cleanCode)
-          const hasP = /<p>.+<\/p>/i.test(cleanCode)
-          const hasA = /<a\s+[^>]*href\s*=\s*['"][^'"]*['"][^>]*>.+<\/a>/i.test(cleanCode)
-          const hasList = /<ul>.*?<li>.+?<\/li>.*?<\/ul>/i.test(cleanCode)
-          return hasH1 && hasImg && hasP && hasA && hasList
+          const hasForm = /<form.*?>.*?<\/form>/i.test(cleanCode)
+          const hasInput = /<input\s+[^>]*type\s*=\s*['"]text['"][^>]*>/i.test(cleanCode)
+          const hasButton = /<button[^>]*type\s*=\s*['"]submit['"][^>]*>.+<\/button>/i.test(cleanCode)
+          return hasH1 && hasForm && hasInput && hasButton
         },
         successMessage:
-          'LUAR BIASA! Kode kamu sangat bersih dan terstruktur. Selamat, {{playerName}}, kamu kini resmi menyandang predikat Junior Frontend Developer! Masa depanmu sangat cerah.',
+          'LUAR BIASA! Kode kamu sangat bersih dan terstruktur. Selamat, {{playerName}}, fondasi HTML-mu sangat kokoh!',
       },
     ],
   },

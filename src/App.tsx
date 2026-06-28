@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, type MouseEvent as ReactMouseEvent } from 'react'
+import { useCallback, useEffect, useState, useMemo, type MouseEvent as ReactMouseEvent } from 'react'
 import './App.css'
 import { CURRICULUM } from './data'
 import { FLAPPY_BIRD_HTML } from './data/flappyBirdHtml'
@@ -15,9 +15,11 @@ import { PreviewPane } from './components/PreviewPane'
 import { TaskModal } from './components/TaskModal'
 import { IdleBanner } from './components/IdleBanner'
 import { IlmuDasar } from './components/IlmuDasar'
+import { CertificateModal } from './components/CertificateModal'
+import { ActivityMultiplayerPanel } from './components/ActivityMultiplayerPanel'
 import { formatCode } from './utils/formatCode'
 
-const IDLE_DELAY_MS = 5 * 60 * 1000 // 5 menit
+const IDLE_DELAY_MS = 5 * 60 * 1000
 type ThemeMode = 'dark' | 'light' | 'high-contrast'
 type MobilePanel = 'editor' | 'preview'
 type DraftMap = Record<string, string>
@@ -128,6 +130,7 @@ function App() {
   const [theme, setTheme] = useState<ThemeMode>('dark')
   const [isCommandOpen, setIsCommandOpen] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
+  const [showCertificate, setShowCertificate] = useState(false)
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>('editor')
   const [skillLevel, setSkillLevel] = useState(() => {
     try {
@@ -157,8 +160,6 @@ function App() {
   const [sidebarWidth, setSidebarWidth] = useState(250)
   const [previewWidth, setPreviewWidth] = useState(35)
 
-  // Reset editor & buka modal tugas ketika modul berganti
-  // (pola "adjust state during render").
   const [prevModuleId, setPrevModuleId] = useState(currentModule.id)
   if (prevModuleId !== currentModule.id) {
     setPrevModuleId(currentModule.id)
@@ -170,8 +171,6 @@ function App() {
     setIsEditorOpen(true)
   }
 
-  // Banner "teks berjalan" muncul saat user idle (hanya ketika sedang bermain,
-  // di tampilan kurikulum, dan modal tugas tidak terbuka).
   const { isIdle } = useIdle(
     IDLE_DELAY_MS,
     isStarted && view === 'curriculum' && !isTaskOpen,
@@ -214,14 +213,12 @@ function App() {
     return () => window.clearInterval(id)
   }, [currentModule.id, isStarted])
 
-  // Narasikan instruksi modul (saat belum sukses).
   useEffect(() => {
     if (isStarted && isVoiceEnabled && !isSuccess) {
       speak(displayedText)
     }
   }, [displayedText, isStarted, isVoiceEnabled, isSuccess, speak])
 
-  // Saat sukses: bunyikan nada keberhasilan & narasikan pesannya.
   useEffect(() => {
     if (!isSuccess) return
     playSuccess()
@@ -258,6 +255,7 @@ function App() {
     if (finished) {
       const finalXp = game.xp + gained
       setToast(`Kelas selesai - ${finalXp} XP - ${getRank(finalXp)}`)
+      setShowCertificate(true)
     }
   }, [cancel, currentModule.title, game, isExam])
 
@@ -576,12 +574,18 @@ function App() {
             recommendedModuleId={recommendedModuleId}
             hardModuleIds={hardModuleIds}
           />
+        ) : activeActivity === 'multiplayer' ? (
+          <ActivityMultiplayerPanel
+            playerName={playerName}
+            onEarnXp={game.addXp}
+          />
         ) : (
           <ActivityTrainingPanel
             activity={activeActivity}
             activeLanguage={currentModule.language}
             onOpenModule={handleNavigate}
             onEarnXp={game.addXp}
+            completedModuleIds={game.completedModuleIds}
           />
         )}
       </div>
@@ -665,6 +669,7 @@ function App() {
           )}
 
           {isIdle && <IdleBanner playerName={playerName} />}
+          {showCertificate && <CertificateModal playerName={playerName} onClose={() => setShowCertificate(false)} />}
         </>
       )}
     </VSCodeLayout>
@@ -710,6 +715,7 @@ function ActivityTrainingPanel({
   activeLanguage: string
   onOpenModule: (chapterIndex: number, moduleIndex: number) => void
   onEarnXp: (amount: number) => void
+  completedModuleIds: string[]
 }) {
   const [searchQuery, setSearchQuery] = useState('')
   const [gitStep, setGitStep] = useState<'modified' | 'staged' | 'committed'>('modified')
@@ -727,6 +733,7 @@ function ActivityTrainingPanel({
     js: '',
   }))
   const todayKey = getTodayKey()
+  const allModuleIds = useMemo(() => CURRICULUM.flatMap((ch) => ch.modules.map((m) => m.id)), [])
   const searchResults = CURRICULUM.flatMap((chapter) =>
     chapter.modules.map((module, moduleIndex) => ({
       id: module.id,
@@ -785,18 +792,28 @@ function ActivityTrainingPanel({
             </p>
             {searchResults.length ? (
               <ul className="activity-list">
-                {searchResults.map((result) => (
-                  <li key={result.id}>
-                    <span>{result.title}</span>
-                    <small>{result.chapter}</small>
-                    <button
-                      type="button"
-                      onClick={() => onOpenModule(result.chapterIndex, result.moduleIndex)}
-                    >
-                      Buka {result.title}
-                    </button>
-                  </li>
-                ))}
+                {searchResults.map((result) => {
+                  const linearIndex = allModuleIds.indexOf(result.id)
+                  const isUnlocked =
+                    linearIndex === 0 ||
+                    completedModuleIds.includes(result.id) ||
+                    (linearIndex > 0 && completedModuleIds.includes(allModuleIds[linearIndex - 1]))
+
+                  return (
+                    <li key={result.id}>
+                      <span>{result.title}</span>
+                      <small>{result.chapter}</small>
+                      <button
+                        type="button"
+                        disabled={!isUnlocked}
+                        style={!isUnlocked ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
+                        onClick={() => onOpenModule(result.chapterIndex, result.moduleIndex)}
+                      >
+                        {isUnlocked ? `Buka ${result.title}` : `Terkunci 🔒`}
+                      </button>
+                    </li>
+                  )
+                })}
               </ul>
             ) : (
               <p>Tidak ada hasil untuk "{searchQuery}".</p>

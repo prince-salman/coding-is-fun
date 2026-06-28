@@ -5,11 +5,11 @@ const EXAM = { name: 'Sistem Evaluasi', role: 'Ujian Otomatis', avatar: 'SYS' }
 
 export const CSS_TRACK: Chapter[] = [
   {
-    chapterId: 6,
-    chapterTitle: 'Hari Kelima: Mewarnai Dunia dengan CSS',
+    chapterId: 7,
+    chapterTitle: 'Hari Ketujuh: Mewarnai Dunia dengan CSS',
     modules: [
       {
-        id: '6.1',
+        id: '7.1',
         type: 'materi',
         language: 'css',
         sender: MENTOR,
@@ -23,7 +23,7 @@ export const CSS_TRACK: Chapter[] = [
           'Mantap, {{playerName}}! Properti "color" mengatur warna teks. Kamu baru saja memberi gaya pertamamu.',
       },
       {
-        id: '6.2',
+        id: '7.2',
         type: 'materi',
         language: 'css',
         sender: MENTOR,
@@ -36,7 +36,7 @@ export const CSS_TRACK: Chapter[] = [
           'Keren! Kombinasi warna teks dan latar yang tepat membuat website nyaman dibaca.',
       },
       {
-        id: '6.3',
+        id: '7.3',
         type: 'materi',
         language: 'css',
         sender: MENTOR,
@@ -51,7 +51,7 @@ export const CSS_TRACK: Chapter[] = [
           'Sempurna! Hirarki visual lewat ukuran & ketebalan font bikin halaman lebih mudah dipindai mata.',
       },
       {
-        id: '6.4',
+        id: '7.4',
         type: 'materi',
         language: 'css',
         sender: MENTOR,
@@ -63,23 +63,80 @@ export const CSS_TRACK: Chapter[] = [
           /\.toolbar\s*\{[^}]*\bdisplay\s*:\s*flex\s*;?[^}]*\bgap\s*:\s*[^;}]+/i.test(code),
         successMessage:
           'Bagus. Flexbox adalah alat utama untuk menyusun toolbar, navbar, dan layout kecil yang rapi.',
+      }
+    ],
+  },
+  {
+    chapterId: 8,
+    chapterTitle: 'Hari Kedelapan: Box Model & Spasi',
+    modules: [
+      {
+        id: '8.1',
+        type: 'materi',
+        language: 'css',
+        sender: MENTOR,
+        title: 'Margin & Padding',
+        description: 'Setiap elemen di HTML pada dasarnya adalah sebuah kotak (Box Model). \n\nMargin adalah jarak di luar kotak (memisahkan elemen ini dengan elemen lain di sekitarnya). Padding adalah jarak di dalam kotak (antara batas kotak dengan isi teks/kontennya).\n\nTugasmu: Berikan "margin" sebesar 20px dan "padding" 10px pada class .box.',
+        initialCode: '.box {\n  /* atur margin dan padding di sini */\n}\n',
+        validator: (code) => /\bmargin\s*:\s*[^;}]+/i.test(code) && /\bpadding\s*:\s*[^;}]+/i.test(code),
+        successMessage: 'Keren! Box Model adalah konsep paling krusial untuk mengatur tata letak dan kelegaan halaman.',
       },
       {
-        id: '6-exam',
+        id: '8.2',
+        type: 'materi',
+        language: 'css',
+        sender: MENTOR,
+        title: 'Borders & Radius',
+        description: 'Untuk melihat batas kotak secara visual, kita bisa memakai "border". Lalu kita bisa membulatkan sudutnya dengan "border-radius".\n\nContoh:\nborder: 1px solid black;\nborder-radius: 5px;\n\nTugasmu: Buatkan properti "border" dan "border-radius" pada class .card!',
+        initialCode: '.card {\n  /* tambahkan border dan border-radius */\n}\n',
+        validator: (code) => /\bborder\s*:\s*[^;}]+/i.test(code) && /\bborder-radius\s*:\s*[^;}]+/i.test(code),
+        successMessage: 'Sip! Elemen berbentuk kartu atau tombol kini terlihat jauh lebih modern.',
+      }
+    ]
+  },
+  {
+    chapterId: 9,
+    chapterTitle: 'Hari Kesembilan: Layout Lanjutan & Desain',
+    modules: [
+      {
+        id: '9.1',
+        type: 'materi',
+        language: 'css',
+        sender: MENTOR,
+        title: 'Positioning Lanjutan',
+        description: 'Positioning membiarkanmu mengatur elemen terlepas dari alur normal.\n\n"position: absolute" akan menempatkan elemen persis di koordinat yang kamu mau (misal top: 0, left: 0), dan akan mengikuti elemen induknya jika induk tersebut memiliki "position: relative".\n\nTugasmu: Berikan "position: absolute" dan properti "top" pada selector .badge.',
+        initialCode: '.badge {\n  /* jadikan posisinya absolute dan tentukan top */\n}\n',
+        validator: (code) => /\bposition\s*:\s*absolute/i.test(code) && /\btop\s*:\s*[^;}]+/i.test(code),
+        successMessage: 'Mantap. Ilmu ini biasa dipakai untuk membuat titik notifikasi merah di atas ikon lonceng!',
+      },
+      {
+        id: '9.2',
+        type: 'materi',
+        language: 'css',
+        sender: MENTOR,
+        title: 'Efek Pseudo-class (:hover)',
+        description: 'Interaktivitas kecil sangat penting. Kita bisa mengubah gaya elemen saat kursor berada di atasnya dengan pseudo-class :hover.\n\nContoh:\nbutton:hover {\n  background-color: red;\n}\n\nTugasmu: Buatkan aturan CSS untuk button:hover dan ubah warna latar (background-color).',
+        initialCode: 'button:hover {\n  /* ubah warna latar saat di-hover */\n}\n',
+        validator: (code) => /button:hover\s*\{[^}]*\bbackground(-color)?\s*:\s*[^;}]+/i.test(code),
+        successMessage: 'Hebat! Website kini terasa merespons sentuhan pengguna.',
+      },
+      {
+        id: 'css-exam',
         type: 'ujian',
         language: 'css',
         sender: EXAM,
-        title: 'Ujian Modul CSS: Kartu Bergaya',
-        description:
-          '{{playerName}}, gaya sebuah komponen kartu. Aturan CSS yang kamu tulis WAJIB mengandung minimal:\n\n1. Sebuah properti "color".\n2. Sebuah properti "background-color".\n3. Sebuah properti "padding".\n\nGabungkan ketiganya untuk menghasilkan tampilan yang rapi!',
-        initialCode: '.card {\n  /* kerjakan ujian di sini */\n}\n',
-        validator: (code) =>
-          /\bcolor\s*:\s*[^;}]+/i.test(code) &&
-          /\bbackground(-color)?\s*:\s*[^;}]+/i.test(code) &&
-          /\bpadding\s*:\s*[^;}]+/i.test(code),
-        successMessage:
-          'Lulus! Kamu sudah bisa menggabungkan beberapa properti CSS jadi satu komponen utuh. Saatnya membuat web jadi hidup dengan JavaScript!',
-      },
-    ],
-  },
+        title: 'Ujian Modul CSS: Desain Tombol',
+        description: 'Ujian CSS! Rancang sebuah tombol yang lengkap! Tulis CSS yang mengandung 5 properti ini sekaligus:\n\n1. color\n2. background-color\n3. padding\n4. border-radius\n5. margin',
+        initialCode: '.btn {\n  /* selesaikan desain tombol */\n}\n',
+        validator: (code) => {
+          return /\bcolor\s*:\s*[^;}]+/i.test(code) &&
+                 /\bbackground(-color)?\s*:\s*[^;}]+/i.test(code) &&
+                 /\bpadding\s*:\s*[^;}]+/i.test(code) &&
+                 /\bborder-radius\s*:\s*[^;}]+/i.test(code) &&
+                 /\bmargin\s*:\s*[^;}]+/i.test(code)
+        },
+        successMessage: 'Lulus! Kamu sudah resmi menguasai fundamental layouting dan styling CSS.',
+      }
+    ]
+  }
 ]

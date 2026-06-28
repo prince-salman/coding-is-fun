@@ -15,6 +15,7 @@ import {
   XCircle,
   AlertTriangle,
   CheckCircle,
+  Swords,
 } from 'lucide-react'
 
 export type ActivityView =
@@ -25,6 +26,7 @@ export type ActivityView =
   | 'extensions'
   | 'practice-lab'
   | 'game'
+  | 'multiplayer'
 
 interface VSCodeLayoutProps {
   isExam: boolean
@@ -45,6 +47,7 @@ const ACTIVITY_ITEMS = [
   { id: 'extensions', icon: Blocks, label: 'Ekstensi' },
   { id: 'practice-lab', icon: BookOpenCheck, label: 'Practice Lab' },
   { id: 'game', icon: Gamepad2, label: 'Game Lab' },
+  { id: 'multiplayer', icon: Swords, label: 'Duel Koding' },
 ] satisfies { id: ActivityView; icon: typeof FileCode; label: string }[]
 
 export function VSCodeLayout({
@@ -144,6 +147,9 @@ export function VSCodeLayout({
             0
           </span>
           <span className="status-item">Port: 3000</span>
+          <span className="status-item" style={{ opacity: 0.8, marginLeft: '10px' }}>
+            Dibuat oleh <a href="https://portofolio-salman.netlify.app/" target="_blank" rel="noreferrer" style={{color: 'inherit', textDecoration: 'underline'}}>Muhamad Salman</a> dan Muhammad Zaidan Faiz
+          </span>
         </div>
         <div className="status-right">
           <span className="status-item">Ln 1, Col 1</span>

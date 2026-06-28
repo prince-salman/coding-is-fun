@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ChevronDown, Volume2, VolumeX, FolderClosed, BookOpen } from 'lucide-react'
+import { ChevronDown, Volume2, VolumeX, FolderClosed, BookOpen, Lock } from 'lucide-react'
 import type { Chapter, Language, Rank } from '../types'
 
 export type AppView = 'curriculum' | 'ilmu-dasar'
@@ -58,6 +58,11 @@ export function Sidebar({
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState('all')
   const normalizedQuery = query.trim().toLowerCase()
+  const allModuleIds = useMemo(
+    () => chapters.flatMap((ch) => ch.modules.map((m) => m.id)),
+    [chapters]
+  )
+
   const visibleChapters = useMemo(
     () =>
       chapters
@@ -130,23 +135,38 @@ export function Sidebar({
                     realModuleIndex === moduleIndex
                   const isCompleted = completedModuleIds.includes(mod.id)
                   const isRecommended = mod.id === recommendedModuleId
+
+                  const linearIndex = allModuleIds.indexOf(mod.id)
+                  const isUnlocked =
+                    linearIndex === 0 ||
+                    isCompleted ||
+                    (linearIndex > 0 && completedModuleIds.includes(allModuleIds[linearIndex - 1]))
+
                   return (
                     <li key={mod.id}>
                       <button
                         type="button"
-                        className={`tree-item ${isActive ? 'active' : ''}`}
+                        className={`tree-item ${isActive ? 'active' : ''} ${!isUnlocked ? 'locked' : ''}`}
+                        disabled={!isUnlocked}
                         aria-current={isActive ? 'true' : undefined}
-                        aria-label={`${mod.title}${mod.type === 'ujian' ? ' Ujian' : ''}${isCompleted ? ' Selesai' : ''}`}
+                        aria-label={`${mod.title}${mod.type === 'ujian' ? ' Ujian' : ''}${isCompleted ? ' Selesai' : ''}${!isUnlocked ? ' Terkunci' : ''}`}
                         onClick={() => onNavigate(realChapterIndex, realModuleIndex)}
                       >
-                        <span className={`file-icon ${icon.className}`} aria-hidden="true">
-                          {icon.label}
-                        </span>
+                        {!isUnlocked ? (
+                          <span className="file-icon" aria-hidden="true" style={{ color: '#888' }}>
+                            <Lock size={12} />
+                          </span>
+                        ) : (
+                          <span className={`file-icon ${icon.className}`} aria-hidden="true">
+                            {icon.label}
+                          </span>
+                        )}
                         <span className="tree-item-label">
                           {mod.title}
                           {mod.type === 'ujian' ? ' (Ujian)' : ''}
                           {isCompleted ? ' - Selesai' : ''}
                           {isRecommended ? ' - Rekomendasi' : ''}
+                          {!isUnlocked ? ' (Terkunci)' : ''}
                         </span>
                       </button>
                     </li>
