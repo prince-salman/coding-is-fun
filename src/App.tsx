@@ -16,7 +16,6 @@ import { TaskModal } from './components/TaskModal'
 import { IdleBanner } from './components/IdleBanner'
 import { IlmuDasar } from './components/IlmuDasar'
 import { CertificateModal } from './components/CertificateModal'
-import { ActivityMultiplayerPanel } from './components/ActivityMultiplayerPanel'
 import { formatCode } from './utils/formatCode'
 
 const IDLE_DELAY_MS = 5 * 60 * 1000
@@ -573,11 +572,6 @@ function App() {
             skillLevel={skillLevel}
             recommendedModuleId={recommendedModuleId}
             hardModuleIds={hardModuleIds}
-          />
-        ) : activeActivity === 'multiplayer' ? (
-          <ActivityMultiplayerPanel
-            playerName={playerName}
-            onEarnXp={game.addXp}
           />
         ) : (
           <ActivityTrainingPanel

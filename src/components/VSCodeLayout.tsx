@@ -15,7 +15,6 @@ import {
   XCircle,
   AlertTriangle,
   CheckCircle,
-  Swords,
 } from 'lucide-react'
 
 export type ActivityView =
@@ -26,7 +25,6 @@ export type ActivityView =
   | 'extensions'
   | 'practice-lab'
   | 'game'
-  | 'multiplayer'
 
 interface VSCodeLayoutProps {
   isExam: boolean
@@ -47,7 +45,6 @@ const ACTIVITY_ITEMS = [
   { id: 'extensions', icon: Blocks, label: 'Ekstensi' },
   { id: 'practice-lab', icon: BookOpenCheck, label: 'Practice Lab' },
   { id: 'game', icon: Gamepad2, label: 'Game Lab' },
-  { id: 'multiplayer', icon: Swords, label: 'Duel Koding' },
 ] satisfies { id: ActivityView; icon: typeof FileCode; label: string }[]
 
 export function VSCodeLayout({
