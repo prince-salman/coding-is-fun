@@ -1515,39 +1515,37 @@ body {
   body {
     overflow-x: hidden;
   }
-  .vscode-layout {
+  .vscode-body {
     flex-direction: column;
   }
   .activity-bar {
     flex-direction: row;
-    height: auto;
+    height: 50px;
     width: 100%;
     overflow-x: auto;
-  }
-  .activity-items {
-    display: flex;
-    flex-direction: row;
+    overflow-y: hidden;
+    flex-shrink: 0;
   }
   .activity-bottom {
-    display: flex;
     flex-direction: row;
     margin-top: 0;
+    margin-left: auto;
   }
   .sidebar-shell {
     width: 100% !important;
-    height: 50vh;
+    height: 40vh !important;
     border-right: none;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid var(--vscode-border);
+    flex-shrink: 0;
   }
   .editor-shell {
+    width: 100% !important;
     flex: 1;
-    height: 50vh;
-  }
-  .resize-handle-sidebar {
-    display: none;
-  }
-  .mobile-panel-switcher {
     display: flex;
+    flex-direction: column;
+  }
+  .resize-handle-sidebar, .resize-handle-preview {
+    display: none;
   }
   .certificate-modal {
     width: 95% !important;
