@@ -203,6 +203,7 @@ export const HTML_TRACK: Chapter[] = [
           return /<input\s+[^>]*type\s*=\s*['"]text['"][^>]*>/i.test(cleanCode) && /<button[^>]*type\s*=\s*['"]submit['"][^>]*>.+<\/button>/i.test(cleanCode)
         },
         successMessage: 'Hebat! Kamu baru saja menguasai cara mengambil data dari user.',
+        exampleSolution: '<form>\n  <input type="text">\n  <button type="submit">Kirim</button>\n</form>',
       },
       {
         id: '5.2',
@@ -221,6 +222,7 @@ export const HTML_TRACK: Chapter[] = [
           return Boolean(tdMatches && tdMatches.length >= 2)
         },
         successMessage: 'Keren! Tabel sangat penting untuk dashboard dan laporan data.',
+        exampleSolution: '<table>\n  <tr>\n    <td>Baris 1, Kolom 1</td>\n    <td>Baris 1, Kolom 2</td>\n  </tr>\n</table>',
       },
     ],
   },
@@ -247,6 +249,7 @@ export const HTML_TRACK: Chapter[] = [
         },
         successMessage:
           'LUAR BIASA! Kode kamu sangat bersih dan terstruktur. Selamat, {{playerName}}, fondasi HTML-mu sangat kokoh!',
+        exampleSolution: '<h1>Pendaftaran TechNova</h1>\n<form>\n  <input type="text">\n  <button type="submit">Daftar Sekarang</button>\n</form>',
       },
     ],
   },

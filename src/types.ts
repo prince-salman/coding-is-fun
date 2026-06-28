@@ -20,6 +20,7 @@ export interface Module {
   /** Mengembalikan true ketika kode learner dianggap benar. */
   validator: (code: string) => boolean
   successMessage: string
+  exampleSolution?: string
 }
 
 export interface Chapter {

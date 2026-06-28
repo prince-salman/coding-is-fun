@@ -20,7 +20,7 @@ import { formatCode } from './utils/formatCode'
 
 const IDLE_DELAY_MS = 5 * 60 * 1000
 type ThemeMode = 'dark' | 'light' | 'high-contrast'
-type MobilePanel = 'editor' | 'preview'
+type MobilePanel = 'sidebar' | 'editor' | 'preview'
 type DraftMap = Record<string, string>
 type ModuleAnalytics = Record<string, { attempts: number; seconds: number }>
 type SnapshotMap = Record<string, { code: string; createdAt: string }[]>
@@ -433,7 +433,7 @@ function App() {
     window.addEventListener('mouseup', onUp)
   }, [previewWidth])
 
-  const solution = getModuleSolution(currentModule.title, currentModule.language)
+  const solution = currentModule.exampleSolution || getModuleSolution(currentModule.title, currentModule.language)
   const hardest = Object.entries(analytics).sort(
     (a, b) => b[1].attempts + b[1].seconds / 60 - (a[1].attempts + a[1].seconds / 60),
   )[0]
