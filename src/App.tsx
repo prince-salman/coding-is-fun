@@ -104,15 +104,39 @@ function getRecommendedModuleId(level: string, completedModuleIds: string[]) {
   return incomplete[0]?.id ?? modules[0].id
 }
 
-function getModuleSolution(title: string, language: string): string {
-  if (language === 'css') return 'h1 {\n  color: red;\n}'
-  if (language === 'javascript') return 'const nama = "Budi";\ndocument.write(nama);'
-  if (/paragraf/i.test(title)) return '<p>Ini paragraf contoh.</p>'
-  if (/bold|italic/i.test(title)) return '<strong>Penting</strong>\n<em>Ditekankan</em>'
-  if (/anchor|tautan|navigasi/i.test(title)) return '<a href="https://wikipedia.org">Beranda</a>'
-  if (/image|gambar/i.test(title)) return '<img src="https://picsum.photos/300/200" alt="Contoh gambar">'
-  if (/list|daftar/i.test(title)) return '<ul>\n  <li>Item pertama</li>\n  <li>Item kedua</li>\n</ul>'
-  return '<h1>Halo Dunia</h1>'
+function getModuleSolution(moduleId: string): string {
+  const solutions: Record<string, string> = {
+    '1.1': '<h1>Halo Dunia</h1>',
+    '1.2': '<p>Ini adalah paragraf contoh untuk website klien.</p>',
+    '1.3': '<p>Teks ini <strong>sangat penting</strong> dan <em>bercetak miring</em>.</p>',
+    '1-exam': '<h1>Pentingnya Belajar</h1>\n<p>Belajar koding itu <strong>sangat</strong> menyenangkan!</p>',
+    '2.1': '<a href="https://wikipedia.org">Ke Wikipedia</a>',
+    '2-exam': '<a href="#">Beranda</a>\n<a href="#">Tentang Kami</a>',
+    '3.1': '<img src="https://picsum.photos/300/200" alt="Gambar acak">',
+    '3-exam': '<a href="https://google.com">\n  <img src="https://picsum.photos/300/200" alt="Logo">\n</a>',
+    '4.1': '<ul>\n  <li>Beli susu</li>\n  <li>Beli roti</li>\n</ul>',
+    '4.2': '<section>\n  <h2>Profil</h2>\n  <p>Ini adalah bagian profil pengguna.</p>\n</section>',
+    '5.1': '<form>\n  <input type="text">\n  <button type="submit">Kirim</button>\n</form>',
+    '5.2': '<table>\n  <tr>\n    <td>Baris 1 Kolom 1</td>\n    <td>Baris 1 Kolom 2</td>\n  </tr>\n</table>',
+    'html-final-exam': '<h1>Form Pendaftaran</h1>\n<form>\n  <input type="text">\n  <button type="submit">Daftar</button>\n</form>',
+    '7.1': 'h1 {\n  color: blue;\n}',
+    '7.2': 'body {\n  background-color: lightblue;\n}',
+    '7.3': 'h1 {\n  font-size: 32px;\n  font-weight: bold;\n}',
+    '7.4': '.toolbar {\n  display: flex;\n  gap: 10px;\n}',
+    '8.1': '.box {\n  margin: 20px;\n  padding: 10px;\n}',
+    '8.2': '.card {\n  border: 1px solid black;\n  border-radius: 5px;\n}',
+    '9.1': '.card {\n  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);\n}',
+    '9.2': '.btn {\n  transition: all 0.3s ease;\n}\n.btn:hover {\n  background-color: blue;\n}',
+    'css-final-exam': '.navbar {\n  display: flex;\n  background-color: #333;\n  padding: 15px;\n}',
+    '10.1': 'document.write("Halo Dunia");',
+    '10.2': 'let skor = 100;\ndocument.write(skor);',
+    '10.3': 'alert("Selamat Datang!");',
+    '10.4': 'console.log("Memeriksa sistem...");',
+    '11.1': 'function sapa() {\n  alert("Halo!");\n}\nsapa();',
+    '11.2': 'let nilai = 80;\nif (nilai > 70) {\n  alert("Lulus!");\n} else {\n  alert("Gagal!");\n}',
+    'js-final-exam': 'let umur = 20;\nif (umur >= 18) {\n  document.write("Dewasa");\n} else {\n  document.write("Anak-anak");\n}'
+  }
+  return solutions[moduleId] || '<!-- Baca instruksi modul dengan seksama -->'
 }
 
 function App() {
@@ -433,7 +457,7 @@ function App() {
     window.addEventListener('mouseup', onUp)
   }, [previewWidth])
 
-  const solution = currentModule.exampleSolution || getModuleSolution(currentModule.title, currentModule.language)
+  const solution = currentModule.exampleSolution || getModuleSolution(currentModule.id)
   const hardest = Object.entries(analytics).sort(
     (a, b) => b[1].attempts + b[1].seconds / 60 - (a[1].attempts + a[1].seconds / 60),
   )[0]
