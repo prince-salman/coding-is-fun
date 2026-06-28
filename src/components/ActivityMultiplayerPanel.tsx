@@ -32,6 +32,11 @@ export function ActivityMultiplayerPanel({ playerName, onEarnXp }: ActivityMulti
     setStatus('searching')
     setOpponentProgress(0)
 
+    newSocket.on('connect_error', () => {
+      setStatus('error')
+      newSocket.disconnect()
+    })
+
     newSocket.on('connect', () => {
       newSocket.emit('join_matchmaking', { playerName })
     })
@@ -112,6 +117,19 @@ export function ActivityMultiplayerPanel({ playerName, onEarnXp }: ActivityMulti
                 Cari Lawan Sekarang
               </button>
             </div>
+          </div>
+        )}
+
+        {status === 'error' && (
+          <div style={{ padding: '40px 0', animation: 'fadeIn 0.5s' }}>
+            <h3 style={{ color: '#e51400', fontSize: '1.5rem' }}>Koneksi Gagal</h3>
+            <p style={{ color: '#aaa', margin: '20px 0' }}>
+              Tidak dapat terhubung ke server Multiplayer. Jika Anda mengakses dari Netlify, fitur ini tidak didukung karena Netlify tidak menjalankan server backend Node.js.
+            </p>
+            <p style={{ color: '#aaa', margin: '20px 0' }}>
+              Jalankan proyek ini secara lokal (npm run start) untuk mencoba fitur ini.
+            </p>
+            <button className="vscode-btn primary-btn" onClick={() => setStatus('idle')}>Kembali</button>
           </div>
         )}
 
