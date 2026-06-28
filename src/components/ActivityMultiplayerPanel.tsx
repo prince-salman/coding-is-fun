@@ -23,9 +23,9 @@ export function ActivityMultiplayerPanel({ playerName, onEarnXp }: ActivityMulti
   }, [socket])
 
   const findMatch = () => {
-    const serverUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    const serverUrl = import.meta.env.VITE_MULTIPLAYER_URL || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
       ? 'http://localhost:4173' 
-      : '/'
+      : '/')
     
     const newSocket = io(serverUrl)
     setSocket(newSocket)
